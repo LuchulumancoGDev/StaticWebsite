@@ -6,38 +6,54 @@ let phoneNumber = document.getElementById('phoneNumber');
 let serviceType = document.getElementById('serviceType');
 let message = document.getElementById('message');
 
-contactForm.addEventListener('submit', (e)=>{
-    e.preventDefault();
-   
-    let formData ={
-        name:name.value,
-        email:email.value,
-        phoneNumber:phoneNumber.value,
-        serviceType:serviceType.value,
-        message:message.value
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  let formData = {
+    name: name.value,
+    email: email.value,
+    phoneNumber: phoneNumber.value,
+    serviceType: serviceType.value,
+    message: message.value
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', '/');
+  xhr.setRequestHeader('content-type', 'application/json');
+  xhr.onloadstart = function () {
+    Swal.fire({
+      title: 'Sending email',
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  };
+  xhr.onload = function () {
+    console.log(xhr.responseText);
+
+    if (xhr.responseText == 'success') {
+      Swal.fire({
+        icon: 'success',
+        title: 'Email sent',
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+      name.value = '';
+      email.value = '';
+      phoneNumber.value = '';
+      serviceType.value = '';
+      message.value = '';
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
+  }
 
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', '/');
-    xhr.setRequestHeader('content-type', 'application/json');
-    xhr.onload= function(){
-        console.log(xhr.responseText);
-
-        if(xhr.responseText == 'success'){
-            alert('Email sent');
-            name.value=' ';
-            email.value=' ';
-            phoneNumber.value=' ';
-            serviceType.value=' ';
-            message.value= ' ';
-        }
-        else{
-            alert('Something went wrong')
-
-        }
-
-
-    }
-
-    xhr.send(JSON.stringify(formData));
-})
+  xhr.send(JSON.stringify(formData));
+});
