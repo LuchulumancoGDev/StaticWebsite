@@ -20,7 +20,7 @@ app.post('/', (req, res) => {
 
   const mailOptions = {
     from: req.body.email,
-    to: 'manabana.electrical@gmail.com',
+    to: config.auth.user,
     subject: `Message from ${req.body.email}: ${req.body.serviceType}`,
     text: req.body.message
   };
