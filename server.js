@@ -21,9 +21,34 @@ app.post('/', (req, res) => {
   const mailOptions = {
     from: req.body.email,
     to: config.auth.user,
-    subject: `Message from ${req.body.email}: ${req.body.serviceType}`,
-    text: req.body.message
+    subject: `SERVICE REQUEST: ${req.body.serviceType}`,
+    html: `
+      <h2>Client Details</h2>
+      <table  style="text-align: left;">
+        <tr>
+          <th>Name:</th>
+          <td>${req.body.name}</td>
+        </tr>
+        <tr>
+          <th>Email Address:</th>
+          <td>${req.body.email}</td>
+        </tr>
+        <tr>
+          <th>Phone Number:</th>
+          <td>${req.body.phoneNumber}</td>
+        </tr>
+        <tr>
+          <th>Service Type:</th>
+          <td>${req.body.serviceType}</td>
+        </tr>
+      </table>
+      <h3>Message</h3>
+      <p>${req.body.message}</p>
+    `
   };
+  
+  
+  
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {

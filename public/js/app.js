@@ -22,7 +22,7 @@ contactForm.addEventListener('submit', (e) => {
   xhr.setRequestHeader('content-type', 'application/json');
   xhr.onloadstart = function () {
     Swal.fire({
-      title: 'Sending email',
+      title: 'Sending email...',
       allowOutsideClick: false,
       onBeforeOpen: () => {
         Swal.showLoading();
