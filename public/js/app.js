@@ -16,7 +16,7 @@ contactForm.addEventListener('submit', (e) => {
     serviceType: serviceType.value,
     message: message.value
   }
-
+debugger
   let xhr = new XMLHttpRequest();
   xhr.open('POST', '/');
   xhr.setRequestHeader('content-type', 'application/json');
