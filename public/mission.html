@@ -211,7 +211,7 @@
                 <div
                   class="d-flex flex-column justify-content-center text-center bg-primary h-100 p-3"
                 >
-                  <h1 class="text-white">5</h1>
+                    <h1 class="text-white" id="yearsOfExperience"></h1>
                   <h2 class="text-white">Years</h2>
                   <h5 class="text-white mb-0">Experience</h5>
                 </div>
@@ -300,7 +300,12 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
+        <script> const currentYear = new Date().getFullYear();
+          const startYear = 2018;
+          const yearsOfExperience = currentYear - startYear;
+      
+          // Update the HTML content with the calculated value
+          document.getElementById('yearsOfExperience').textContent = yearsOfExperience;</script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
   </body>
