@@ -1,5 +1,5 @@
 {
-  "name": "staticwebsite",
+  "name": "",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
@@ -13,8 +13,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "": "file:",
     "express": "^4.18.2",
     "nodemailer": "^6.9.6",
+    "staticwebsite": "file:",
     "sweetalert2": "^11.7.12"
   },
   "devDependencies": {
